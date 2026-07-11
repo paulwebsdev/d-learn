@@ -7,6 +7,7 @@ function PasswordInput({
   value,
   onChange,
   required = false,
+  error,
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -15,6 +16,7 @@ function PasswordInput({
 
       <label className="mb-2 block font-medium text-slate-700">
         {label}
+
         {required && (
           <span className="ml-1 text-red-500">*</span>
         )}
@@ -28,7 +30,12 @@ function PasswordInput({
           value={value}
           onChange={onChange}
           required={required}
-          className="w-full rounded-xl border border-slate-300 px-4 py-3 pr-12 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+          autoComplete="current-password"
+          className={`w-full rounded-xl border px-4 py-3 pr-12 outline-none transition focus:ring-4 ${
+            error
+              ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+              : "border-slate-300 focus:border-blue-600 focus:ring-blue-100"
+          }`}
         />
 
         <button
@@ -36,10 +43,20 @@ function PasswordInput({
           onClick={() => setShowPassword(!showPassword)}
           className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-blue-600"
         >
-          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          {showPassword ? (
+            <EyeOff size={20} />
+          ) : (
+            <Eye size={20} />
+          )}
         </button>
 
       </div>
+
+      {error && (
+        <p className="mt-2 text-sm text-red-500">
+          {error}
+        </p>
+      )}
 
     </div>
   );

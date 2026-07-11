@@ -3,6 +3,7 @@ function Button({
   variant = "primary",
   type = "button",
   onClick,
+  className = "",
 }) {
   const styles = {
     primary:
@@ -19,7 +20,7 @@ function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`rounded-xl px-6 py-3 font-semibold transition ${styles[variant]}`}
+      className={`rounded-xl px-6 py-3 font-semibold transition ${styles[variant]} ${className}`}
     >
       {children}
     </button>

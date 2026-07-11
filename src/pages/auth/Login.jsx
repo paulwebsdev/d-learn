@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,16 +13,42 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    console.log({
-      email,
-      password,
-      rememberMe,
-    });
-  };
+  const newErrors = {};
+
+  // Email validation
+  if (!email.trim()) {
+    newErrors.email = "Email is required.";
+  } else if (!/\S+@\S+\.\S+/.test(email)) {
+    newErrors.email = "Please enter a valid email.";
+  }
+
+  // Password validation
+  if (!password) {
+    newErrors.password = "Password is required.";
+  } else if (password.length < 8) {
+    newErrors.password = "Password must be at least 8 characters.";
+  }
+
+  setErrors(newErrors);
+
+console.log(newErrors);
+
+  // Stop if there are errors
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
+
+  console.log({
+    email,
+    password,
+    rememberMe,
+  });
+};
 
   return (
     <AuthLayout>
@@ -35,21 +62,23 @@ function Login() {
         <form onSubmit={handleSubmit}>
 
           <AuthInput
-            label="Email Address"
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+  label="Email Address"
+  type="email"
+  placeholder="Enter your email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  required
+  error={errors.email}
+/>
 
           <PasswordInput
-            label="Password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+  label="Password"
+  placeholder="Enter your password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  required
+  error={errors.password}
+/>
 
           <div className="mb-6 flex items-center justify-between">
 
@@ -74,9 +103,12 @@ function Login() {
 
           </div>
 
-          <Button className="w-full">
-            Login
-          </Button>
+          <Button
+  type="submit"
+  className="w-full"
+>
+  Login
+</Button>
 
         </form>
 
