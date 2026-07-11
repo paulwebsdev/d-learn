@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Button from "../ui/Button";
 
 function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-lg">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
@@ -87,11 +89,16 @@ function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="rounded-xl border border-slate-200 p-2 transition hover:bg-slate-100 md:hidden"
-          aria-label="Open Menu"
-        >
-          <Menu size={22} />
-        </button>
+  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  className="rounded-xl border border-slate-200 p-2 transition hover:bg-slate-100 md:hidden"
+  aria-label="Toggle Menu"
+>
+  {mobileMenuOpen ? (
+    <X size={22} />
+  ) : (
+    <Menu size={22} />
+  )}
+</button>
 
       </div>
     </header>
