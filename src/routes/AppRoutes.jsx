@@ -5,6 +5,8 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 
 import MainLayout from "../layouts/MainLayout";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import NotFound from "../pages/public/NotFound";
 
 
 function AppRoutes() {
@@ -19,8 +21,14 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
+        <Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
 
+<Route path="*" element={<NotFound />} />
       </Route>
+      
 
     </Routes>
   );
