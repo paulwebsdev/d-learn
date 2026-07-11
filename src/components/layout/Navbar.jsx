@@ -101,6 +101,76 @@ function Navbar() {
 </button>
 
       </div>
+
+      {mobileMenuOpen && (
+  <div className="border-t border-slate-200 bg-white md:hidden">
+
+    <nav className="flex flex-col px-6 py-4">
+
+      <a
+        href="#home"
+        onClick={() => setMobileMenuOpen(false)}
+        className="py-3 text-slate-700 hover:text-blue-600"
+      >
+        Home
+      </a>
+
+      <a
+        href="#programs"
+        onClick={() => setMobileMenuOpen(false)}
+        className="py-3 text-slate-700 hover:text-blue-600"
+      >
+        Programs
+      </a>
+
+      <a
+        href="#features"
+        onClick={() => setMobileMenuOpen(false)}
+        className="py-3 text-slate-700 hover:text-blue-600"
+      >
+        Features
+      </a>
+
+      <a
+        href="#faq"
+        onClick={() => setMobileMenuOpen(false)}
+        className="py-3 text-slate-700 hover:text-blue-600"
+      >
+        FAQ
+      </a>
+
+      <Link
+        to="/contact"
+        onClick={() => setMobileMenuOpen(false)}
+        className="py-3 text-slate-700 hover:text-blue-600"
+      >
+        Contact
+      </Link>
+
+      <hr className="my-4" />
+
+      <Link
+        to="/login"
+        onClick={() => setMobileMenuOpen(false)}
+        className="py-3 text-slate-700 hover:text-blue-600"
+      >
+        Login
+      </Link>
+
+      <Link
+        to="/register"
+        onClick={() => setMobileMenuOpen(false)}
+      >
+        <Button className="mt-3 w-full">
+          Get Started
+        </Button>
+      </Link>
+
+    </nav>
+
+  </div>
+)}
+
     </header>
   );
 }
