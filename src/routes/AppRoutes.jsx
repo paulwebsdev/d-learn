@@ -4,6 +4,9 @@ import Home from "../pages/public/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 
+import Dashboard from "../pages/dashboard/Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
+
 import MainLayout from "../layouts/MainLayout";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import NotFound from "../pages/public/NotFound";
@@ -28,6 +31,15 @@ function AppRoutes() {
 
 <Route path="*" element={<NotFound />} />
       </Route>
+
+      <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
       
 
     </Routes>

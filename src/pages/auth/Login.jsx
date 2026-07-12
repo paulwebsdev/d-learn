@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 import AuthLayout from "../../components/auth/AuthLayout";
 import AuthCard from "../../components/auth/AuthCard";
@@ -9,7 +10,9 @@ import AuthInput from "../../components/auth/AuthInput";
 import PasswordInput from "../../components/auth/PasswordInput";
 import Button from "../../components/ui/Button";
 
-function Login() {
+function Login() {const navigate = useNavigate();
+const { login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -43,11 +46,12 @@ console.log(newErrors);
     return;
   }
 
-  console.log({
-    email,
-    password,
-    rememberMe,
-  });
+  login({
+  name: "Paul",
+  email,
+});
+
+navigate("/dashboard");
 };
 
   return (
